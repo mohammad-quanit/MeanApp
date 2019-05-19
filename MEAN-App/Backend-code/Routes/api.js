@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
   // res.send(req.body);
 });
 
-// api for register user
+// api for register user 
 router.post('/register', (req, res) => {
   let userData = req.body;
   let user = new User(userData);
@@ -32,28 +32,28 @@ router.post('/register', (req, res) => {
       throw new Error(err);
     }
     res.status(200).send(regUser);
-    console.log(regUser, 'User agaya');
   });
 });
 
 // api for login user
 router.post('/login', (req, res) => {
   let userData = req.body;
+  console.log('email ye bhji ha...', userData.email)
   User.findOne({ email: userData.email }, (err, user) => {
     // if there is some server error
     if (err) {
+      console.log('ye error aya bhai.....', err);
       throw new Error(err);
-    }
-    // if user not found
-    if (!user) {
-      res.status(404).send('Email not Found!');
     } else {
-      // if you provide user password wrong
-      if (user.password !== userData.password) {
+      // if user not found
+      if (!user) {
+        res.status(401).send('Email not Found!');
+      } else if (user.pwd !== userData.pwd) {
+        // if you provide user password wrong
         res.status(401).send('Invalid Password!');
       } else {
         // if everything is ok / succesfully logged in
-        res.status(200).send(`Logged in ${user}`);
+        res.status(200).send(user);
       }
     }
   });

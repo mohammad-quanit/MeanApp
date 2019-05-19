@@ -6,10 +6,16 @@ import { HttpClient } from "@angular/common/http";
 })
 export class RegisterService {
 
-  private registrationURL = "http://localhost:4001/api/register";
+  public registrationURL = "http://localhost:4001/api/register";
+  public loginURL = "http://localhost:4001/api/login";
+
   constructor(private http: HttpClient) { }
 
   registerUser(user) {
     return this.http.post<any>(this.registrationURL, user);
+  }
+
+  loginUser(user) {
+    return this.http.post<any>(this.loginURL, user);
   }
 }
