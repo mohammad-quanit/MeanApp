@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 const User = require('../Model/user');
 const db = 'mongodb://mquanit:danzakuduro12345@ds113853.mlab.com:13853/starter-db';
 
@@ -31,7 +32,9 @@ router.post('/register', (req, res) => {
     if (err) {
       throw new Error(err);
     }
-    res.status(200).send(regUser);
+    let payload = { subject: regUser._id }
+    let token = jwt.sign(payload, 'secretkey');
+    res.status(200).send({ email: regUser.email, token });
   });
 });
 
@@ -53,7 +56,9 @@ router.post('/login', (req, res) => {
         res.status(401).send('Invalid Password!');
       } else {
         // if everything is ok / succesfully logged in
-        res.status(200).send(user);
+        let payload = { subject: user._id }
+        let token = jwt.sign(payload, 'secretkey');
+        res.status(200).send({ email: user.email, token });
       }
     }
   });
@@ -103,7 +108,7 @@ router.get('/events', (req, res) => {
 });
 
 // special events
-router.get('/special', (req, res) => {
+router.get('/special', verifyToken, (req, res) => {
   let specialEvents = [
     {
       "_id": "1",
@@ -143,6 +148,19 @@ router.get('/special', (req, res) => {
     }
   ]
   res.json(specialEvents)
-})
+});
+
+function verifyToken(req, res, next) {
+  if (!req.headers.authorization) { return res.status(401).send('Unauthorized Request'); }
+
+  let token = req.headers.authorization.split(' ')[1];
+  if (token === 'null' || token === 'undefined') { return res.status(401).send('Unauthorized Request'); }
+
+  let payload = jwt.verify(token, 'secretkey');
+  if (!payload) { return res.status(401).send('Unauthorized Request'); }
+
+  req.userId = payload.subject;
+  next();
+}
 
 module.exports = router;
