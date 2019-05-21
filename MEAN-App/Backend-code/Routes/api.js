@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const User = require('../Model/user');
-const db = 'mongodb://mquanit:danzakuduro12345@ds113853.mlab.com:13853/starter-db';
+const db = 'mongourl';
 
 mongoose.connect(db, { useNewUrlParser: true }, err => {
   if (err) {
