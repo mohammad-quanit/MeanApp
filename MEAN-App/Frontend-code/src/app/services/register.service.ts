@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterService {
 
-  public registrationURL = "http://localhost:4001/api/register";
-  public loginURL = "http://localhost:4001/api/login";
+  public registrationURL = '/api/register';
+  public loginURL = '/api/login';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -26,7 +26,7 @@ export class RegisterService {
 
   loggedOut() {
     localStorage.removeItem('userToken');
-    this.router.navigate(["/"]);
+    this.router.navigate(['/']);
   }
 
   getToken() {
