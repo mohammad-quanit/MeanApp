@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const Users = require('../Model/users');
+const Movies = require('../Model/movies');
 const mongoAtlasUri =
   'mongodb+srv://quanit:quanit12345@cluster0.r3d3a.mongodb.net/sample_mflix?retryWrites=true&w=majority';
 
@@ -65,6 +66,16 @@ router.post('/login', async (req, res) => {
     throw new Error(error);
   }
 });
+
+
+router.get('/movies', async (req, res) => {
+  try {
+    const movies = await Movies.find().skip(20).limit(10)
+    res.status(200).send(movies);
+  } catch (error) {
+    throw new Error(error);
+  }
+})
 
 // events api
 router.get('/events', (req, res) => {
