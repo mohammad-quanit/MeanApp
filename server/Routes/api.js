@@ -3,8 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const Users = require('../Model/users');
-const mongoAtlasUri =
-  'mongodb+srv://quanit:quanit12345@cluster0.r3d3a.mongodb.net/sample_mflix?retryWrites=true&w=majority';
+const mongoAtlasUri = 'mongodburi';
 
 try {
   // Connect to the MongoDB cluster
