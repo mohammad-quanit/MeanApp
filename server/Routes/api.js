@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const Users = require('../Model/users');
 const Movies = require('../Model/movies');
-const mongoAtlasUri =
-  'mongodb+srv://quanit:quanit12345@cluster0.r3d3a.mongodb.net/sample_mflix?retryWrites=true&w=majority';
+require('dotenv').config()
+const mongoAtlasUri = process.env.MONGO_ATLAS_URI
 
 try {
   // Connect to the MongoDB cluster
