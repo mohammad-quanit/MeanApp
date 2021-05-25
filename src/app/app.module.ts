@@ -10,6 +10,7 @@ import { SpecialEventsComponent } from './Components/special-events/special-even
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { EventsComponent } from './Components/events/events.component';
 import { LoginComponent } from './Components/login/login.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { LoginComponent } from './Components/login/login.component';
     LoginComponent,
     EventsComponent,
     SpecialEventsComponent,
+    FilterPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [

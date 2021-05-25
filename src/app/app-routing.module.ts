@@ -7,7 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '**', redirectTo: '/' },
+  // { path: '**', redirectTo: '/' },
   { path: '', pathMatch: 'full', component: EventsComponent },
   {
     path: 'special-events',

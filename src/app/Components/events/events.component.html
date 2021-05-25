@@ -1,13 +1,28 @@
 <div class="row mt-5">
-  <div class="col-md-4 mb-3" *ngFor="let event of events">
+  <div>
+    <input
+      type="email"
+      class="form-control"
+      id="search-event"
+      aria-describedby="search-event"
+      [(ngModel)]="searchEvent"
+      placeholder="Enter event to search"
+      autofocus
+    />
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-md-4 mb-3" style="height: 30%" *ngFor="let event of events | filter: searchEvent">
     <div class="card text-center">
       <div class="card-body">
-        <h5 class="card-title">{{event.name}}</h5>
-        <p class="card-text">{{event.description}}</p>
+        <!-- <img [src]="event.avatar" alt /> -->
+        <h5 class="card-title">{{ event.name }}</h5>
+        <p class="card-text">{{ event.description }}</p>
         <a href="#" class="btn btn-primary">Buy Tickets</a>
       </div>
       <div class="card-footer text-muted">
-        {{event.date | date }}
+        {{ event.date | date }}
       </div>
     </div>
   </div>
