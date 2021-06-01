@@ -1,0 +1,11 @@
+{
+  "events": [
+    {
+      "_id": 1,
+      "name": "Flowdesk",
+      "description": "vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at",
+      "date": "5/10/2021",
+      "avatar": "http://dummyimage.com/171x100.png/dddddd/000000"
+    }
+  ]
+}

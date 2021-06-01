@@ -1,7 +1,7 @@
 <div class="row mt-5">
   <div>
     <input
-      type="email"
+      type="search"
       class="form-control"
       id="search-event"
       aria-describedby="search-event"
@@ -12,14 +12,19 @@
   </div>
 </div>
 
-<div class="row mt-5">
-  <div class="col-md-4 mb-3" style="height: 30%" *ngFor="let event of events | filter: searchEvent">
+<div class="row mt-5" data-cy="events">
+  <div
+    class="col-md-4 mb-3 card-item"
+    id="card-item"
+    style="height: 30%"
+    *ngFor="let event of events | filter: searchEvent"
+  >
     <div class="card text-center">
       <div class="card-body">
         <!-- <img [src]="event.avatar" alt /> -->
         <h5 class="card-title">{{ event.name }}</h5>
         <p class="card-text">{{ event.description }}</p>
-        <a href="#" class="btn btn-primary">Buy Tickets</a>
+        <a class="btn btn-primary">Buy Tickets</a>
       </div>
       <div class="card-footer text-muted">
         {{ event.date | date }}

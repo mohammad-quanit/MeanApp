@@ -235,12 +235,12 @@ router.get('/events', (req, res) => {
       _id: 20,
       name: 'Regrant',
       description:
-        'nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam',
+        'nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat helllo',
       date: '1/30/2021',
       avatar: 'http://dummyimage.com/194x100.png/dddddd/000000',
     },
   ];
-  res.json(events);
+  res.status(200).send(events);;
 });
 
 // special events
@@ -283,7 +283,7 @@ router.get('/special', verifyToken, (req, res) => {
       date: '2012-04-23T18:25:43.511Z',
     },
   ];
-  res.json(specialEvents);
+  res.status(200).send(specialEvents);
 });
 
 function verifyToken(req, res, next) {
